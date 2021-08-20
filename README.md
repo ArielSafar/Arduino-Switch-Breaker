@@ -16,4 +16,4 @@ for mouting the beraings an extra small 90 degree part has been added
 
 all parts were printed in petg. other materials could produce different results
 
-https://github.com/kapyuval/Arduino-Switch-Breaker/blob/dev/circuit-diagram.jpg?raw=true
+https://raw.githubusercontent.com/kapyuval/Arduino-Switch-Breaker/dev/circuit-diagram.jpg
