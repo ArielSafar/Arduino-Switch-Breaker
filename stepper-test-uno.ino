@@ -7,11 +7,11 @@
 #include <SPI.h>
 #include <Ethernet.h>
 
+#include <SD.h>
+
 #include <math.h>
 
-#define MOTOR_STEPS 200 // using a 200-step motor (most common)
 // configure the pins connected
-
 #define DIR 5
 #define STEP 6
 #define MS1 7
@@ -19,6 +19,7 @@
 #define MS3 9
 #define MICROSTEPS 16
 #define RPM 120
+#define MOTOR_STEPS 200 // using a 200-step motor (most common)
 
 A4988 stepper(MOTOR_STEPS, DIR, STEP, MS1, MS2, MS3);
 
@@ -30,18 +31,14 @@ EthernetServer server(80); // Using port 80
 
 void setup()
 {
-    Serial.begin(9600);
-    stepper.begin(RPM, MICROSTEPS);
-    Serial.println("Start 1:16");
-
-    Ethernet.begin(mac_address);
-    server.begin();
-    Serial.println(Ethernet.localIP());
+    init_serial(9600);
+    init_sdcard();
+    init_ethernet(server, mac_address);
+    init_stepper(RPM, MICROSTEPS);
 }
 
 void loop()
 {
-
     EthernetClient client = server.available();
     if (client)
     {
@@ -56,14 +53,9 @@ void loop()
                 // Client sent request, now waiting for response
                 if (c == '\n' && currentLineIsBlank)
                 {
-                    client.println("HTTP/1.1 200 OK"); // HTTP response
-                    client.println("Content-Type: text/html");
-                    client.println(); // HTML code
-                    client.print("<center><br><h1>Stepper Motor</h1><br><br><br><FORM>");
-                    client.print("<P> <INPUT type=\"submit\" name=\"direction\" value=\"CW\">");
-                    client.print("<P> <INPUT type=\"submit\" name=\"direction\" value=\"CCW\">");
-                    client.print("</FORM>");
-                    client.print("<p>" + String(round(revolutions)) + "</p></center>");
+                    // Todo: read from file
+                    html_response(client);
+
                     break;
                 }
                 if (c == '\n')
@@ -89,5 +81,49 @@ void loop()
 
     revolutions += 0.5;
     stepper.rotate(direction * 1 * 180); // in microsteps
-    Serial.println(revolutions);
+    Serial.println("Revolutions: " + String(floor(revolutions)));
+}
+
+void init_serial(long data_rate)
+{
+    Serial.begin(data_rate);
+    Serial.println("Serial started successfully with data rate of " + data_rate);
+}
+
+void init_stepper(short rpm, short microsteps)
+{
+    stepper.begin(rpm, microsteps);
+    Serial.println("Stepper motor initialized successfully, set to " + String(rpm) + " RPM and step ratio of 1:" + String(microsteps));
+}
+
+void init_ethernet(EthernetServer server, byte mac_addr[])
+{
+    Ethernet.begin(mac_addr);
+    server.begin();
+    Serial.println("Ethernet initialized successfully " + Ethernet.localIP());
+}
+
+void init_sdcard()
+{
+    bool res = 0;
+    do
+    {
+        res = SD.begin(4);
+        if (!res)
+            Serial.println("SD Card failed");
+
+    } while (!res);
+    Serial.println("SD Card initialized successfully");
+}
+
+void html_response(EthernetClient client)
+{
+    client.println("HTTP/1.1 200 OK"); // HTTP response
+    client.println("Content-Type: text/html");
+    client.println(); // HTML code
+
+    client.print("<center><br><h1>Stepper Motor</h1><br><br><br><FORM>");
+    client.print("<P> <INPUT type=\"submit\" name=\"direction\" value=\"CW\">");
+    client.print("<P> <INPUT type=\"submit\" name=\"direction\" value=\"CCW\">");
+    client.print("</FORM></center>");
 }
