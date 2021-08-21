@@ -51,10 +51,11 @@ void loop()
 	handle_motor();
 	handle_network();
 
-	if (direction == CW && (int)cw_revolutions % 20 == 0 && (int)cw_revolutions == cw_revolutions)
+	// Save revolution every 100
+	if (direction == CW && (int)cw_revolutions % 100 == 0 && (int)cw_revolutions == cw_revolutions)
 		save_revolutions_to_storage(CW_REVS_ADDR, (int)cw_revolutions);
 
-	if (direction == CCW && (int)ccw_revolutions % 20 == 0 && (int)ccw_revolutions == ccw_revolutions)
+	if (direction == CCW && (int)ccw_revolutions % 100 == 0 && (int)ccw_revolutions == ccw_revolutions)
 		save_revolutions_to_storage(CCW_REVS_ADDR, (int)ccw_revolutions);
 }
 
@@ -112,6 +113,8 @@ void send_response(String json, String content_type, String status_code)
 	client.println(status_code);
 	client.print("Content-Type: ");
 	client.println(content_type);
+	client.println("Access-Control-Allow-Methods: POST, GET, OPTIONS, DELETE");
+	client.println("Access-Control-Allow-Origin: *");
 	client.println();
 
 	client.print(json);
@@ -141,11 +144,11 @@ void handle_motor()
 	stepper.setRPM(RPM);
 
 	if (direction == 1)
-		cw_revolutions += 0.125;
+		cw_revolutions += (1 / 16.0);
 	else
-		ccw_revolutions += 0.125;
+		ccw_revolutions += (1 / 16.0);
 
-	stepper.rotate(45 * direction);
+	stepper.rotate(360 / 16.0 * direction);
 }
 
 void handle_network()
@@ -173,7 +176,19 @@ void handle_network()
 		if (c == '\n' && !currentLineIsBlank)
 		{
 			Serial.println();
-			send_response(handle_response(buffer), "application/json", "200 OK");
+
+			if (isOptionsRequest(buffer))
+			{
+				client.println("HTTP/1.1 204 No Content");
+				client.println("Access-Control-Allow-Methods: POST, GET, OPTIONS, DELETE");
+				client.println("Access-Control-Allow-Origin: *");
+				client.println();
+			}
+			else
+			{
+				send_response(handle_response(buffer), "application/json", "200 OK");
+			}
+
 			break;
 		}
 		if (c == '\n')
@@ -191,22 +206,28 @@ void handle_network()
 }
 
 // This is the place to add more abilities
+
+boolean isOptionsRequest(String buffer)
+{
+	return buffer.indexOf("OPTIONS") >= 0;
+}
+
 String handle_response(String buffer)
 {
-	if (buffer.indexOf("POST /?direction=CW") >= 0)
+	if (buffer.indexOf("POST /direction=CW") >= 0)
 	{
 		direction = CW;
 		return json("direction", "CW");
 	}
-	if (buffer.indexOf("POST /?direction=CCW") >= 0)
+	if (buffer.indexOf("POST /direction=CCW") >= 0)
 	{
 		direction = CCW;
 		return json("direction", "CCW");
 	}
 
-	if (buffer.indexOf("POST /?speed=") >= 0)
+	if (buffer.indexOf("POST /speed=") >= 0)
 	{
-		String tmp = buffer.substring(13, 16);
+		String tmp = buffer.substring(12, 15);
 		RPM = tmp.toInt();
 		return json("speed", RPM);
 	}
