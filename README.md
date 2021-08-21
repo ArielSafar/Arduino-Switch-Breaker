@@ -18,14 +18,25 @@ all parts were printed in petg. other materials could produce different results
 
 https://raw.githubusercontent.com/kapyuval/Arduino-Switch-Breaker/dev/circuit-diagram.jpg
 
-# 3D Printed parts
+# BOM
+
+## 3D Printed parts
 
  * 2 x Motor Holder
  * 4 x Cam
  * 8 x Switch Rack
  * 4 x 90 Degree Adapter
 
-# BOM
+## Tools
+* a soldering iron
+* a file set for compensating for 3d printed parts tolerances
+* (Optional) a multimeter to verify connections
+* a screw driver set
+* pliers for holding the nuts while you fasten them
+* a pc for programming the arduino
+* access to a 3d printer
+
+## Parts
 
 * 4x20mm M5
 * 4x10mm M5
@@ -113,3 +124,5 @@ https://www.amazon.com/YMDK-Keycap-Switches-Mechanical-Keyboard/dp/B079GPVBQ2
 85.19$
 
 * DSA keycaps are another 13.99$
+
+## Tools
