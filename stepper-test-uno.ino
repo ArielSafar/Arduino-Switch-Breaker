@@ -1,17 +1,8 @@
 #include <Arduino.h>
 #include <A4988.h>
-#include <BasicStepperDriver.h>
-#include <MultiDriver.h>
-#include <SyncDriver.h>
-
-#include <SPI.h>
 #include <Ethernet.h>
 
-#include <SD.h>
-
-#include <math.h>
-
-// configure the pins connected
+// <!-- Stepper motor stuff -->
 #define DIR 5
 #define STEP 6
 #define MS1 7
