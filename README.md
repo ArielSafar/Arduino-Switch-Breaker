@@ -18,7 +18,7 @@ all parts were printed in petg. other materials could produce different results
 
 https://raw.githubusercontent.com/kapyuval/Arduino-Switch-Breaker/dev/circuit-diagram.jpg
 
-#BOM
+# BOM
 
 4x20mm M5
 4x10mm M5
