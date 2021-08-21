@@ -32,6 +32,11 @@ https://raw.githubusercontent.com/kapyuval/Arduino-Switch-Breaker/dev/circuit-di
 * 1xNEMA 17 motor (any bipolar motor will work)
 * 32xDSA keycaps
 
+* 12V dc power supply
+* Polulu A4988 stepper motor driver
+* arduino pro micro
+* (optional) breadboard
+
 a set with a shaft, two bearing and an 8mm to 8mm adapter (if it fits your motor shaft)
 recommended even of you don't use the adapter beacause shipping would be more expensive if 
 you buy the bearings separately when purchased seperately
@@ -99,3 +104,10 @@ everything with breadboard (no keycaps)
 85.19$
 
 DSA keycaps are another 13.99$
+
+# 3D Printed parts
+
+ * 2 x Motor Holder
+ * 4 x Cam
+ * 8 x Switch Rack
+ * 4 x 90 Degree Adapter
