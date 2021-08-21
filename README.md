@@ -44,6 +44,8 @@ https://raw.githubusercontent.com/kapyuval/Arduino-Switch-Breaker/dev/circuit-di
 * arduino pro micro
 * (optional) breadboard
 
+## Pricing
+
 * a set with a shaft, two bearing and an 8mm to 8mm adapter (if it fits your motor shaft)
 recommended even of you don't use the adapter beacause shipping would be more expensive if 
 you buy the bearings separately when purchased seperately
@@ -104,7 +106,7 @@ https://www.amazon.com/YMDK-Keycap-Switches-Mechanical-Keyboard/dp/B079GPVBQ2
 13.5$
 
 
-Total
+## Total Costs
 * everything with wires only (no keycaps)
 76.48$
 * everything with breadboard (no keycaps)
