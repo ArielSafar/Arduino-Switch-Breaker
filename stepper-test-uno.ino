@@ -9,9 +9,9 @@
 #define MS2 8
 #define MS3 9
 #define MICROSTEPS 16
-#define RPM 120
 #define MOTOR_STEPS 200 // using a 200-step motor (most common)
 
+byte RPM = 120;
 A4988 stepper(MOTOR_STEPS, DIR, STEP, MS1, MS2, MS3);
 
 long revolutions = 0;
