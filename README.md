@@ -18,6 +18,13 @@ all parts were printed in petg. other materials could produce different results
 
 https://raw.githubusercontent.com/kapyuval/Arduino-Switch-Breaker/dev/circuit-diagram.jpg
 
+# 3D Printed parts
+
+ * 2 x Motor Holder
+ * 4 x Cam
+ * 8 x Switch Rack
+ * 4 x 90 Degree Adapter
+
 # BOM
 
 * 4x20mm M5
@@ -104,10 +111,3 @@ everything with breadboard (no keycaps)
 85.19$
 
 DSA keycaps are another 13.99$
-
-# 3D Printed parts
-
- * 2 x Motor Holder
- * 4 x Cam
- * 8 x Switch Rack
- * 4 x 90 Degree Adapter
