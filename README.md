@@ -20,17 +20,17 @@ https://raw.githubusercontent.com/kapyuval/Arduino-Switch-Breaker/dev/circuit-di
 
 # BOM
 
-4x20mm M5
-4x10mm M5
-4x30mm M5
-4xM5 nuts
+* 4x20mm M5
+* 4x10mm M5
+* 4x30mm M5
+* 4xM5 nuts
 
-1x8mm to 4mm stepper motor adapter (or get other adapter that fits your motor shaft)
-1x150mm lead screw with 8mm diameter, 2mm pitch, 4mm lead 
-2xSHF8 8mm lead screw fasteners
-2xKP08 Shaft holder bearing
-1xNEMA 17 motor (any bipolar motor will work)
-32xDSA keycaps
+* 1x8mm to 4mm stepper motor adapter (or get other adapter that fits your motor shaft)
+* 1x150mm lead screw with 8mm diameter, 2mm pitch, 4mm lead 
+* 2xSHF8 8mm lead screw fasteners
+* 2xKP08 Shaft holder bearing
+* 1xNEMA 17 motor (any bipolar motor will work)
+* 32xDSA keycaps
 
 a set with a shaft, two bearing and an 8mm to 8mm adapter (if it fits your motor shaft)
 recommended even of you don't use the adapter beacause shipping would be more expensive if 
