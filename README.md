@@ -124,5 +124,3 @@ https://www.amazon.com/YMDK-Keycap-Switches-Mechanical-Keyboard/dp/B079GPVBQ2
 85.19$
 
 * DSA keycaps are another 13.99$
-
-## Tools
